@@ -34,30 +34,27 @@ class ZombieAssault:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
-                    # Move the player to the right.
                     self.player.moving_right = True
                 elif event.key == pygame.K_LEFT:
-                    # Move the player to the left.
                     self.player.moving_left = True
                 elif event.key == pygame.K_UP:
-                    # Move the player up.
                     self.player.moving_up = True
                 elif event.key == pygame.K_DOWN:
-                    # Move the player down.
                     self.player.moving_down = True
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
-                    # Stop moving the player to the right.
                     self.player.moving_right = False
+                    self.player.image = self.player.player_images["right"]
                 elif event.key == pygame.K_LEFT:
-                    # Stop moving the player to the left.
                     self.player.moving_left = False
+                    self.player.image = self.player.player_images["left"]
                 elif event.key == pygame.K_UP:
-                    # Stop moving the player up.
                     self.player.moving_up = False
+                    self.player.image = self.player.player_images["up"]
                 elif event.key == pygame.K_DOWN:
-                    # Stop moving the player down.
                     self.player.moving_down = False
+                    self.player.image = self.player.player_images["down"]
+
                 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
