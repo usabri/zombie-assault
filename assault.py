@@ -2,6 +2,7 @@ import sys
 import pygame
 
 from settings import Settings
+from player import Player
 
 class ZombieAssault:
     """Overall class to manage game assets and behavior."""
@@ -15,10 +16,7 @@ class ZombieAssault:
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Zombie Assault v0.1.0")
-        
-        # Load the background image.
-        self.background = pygame.image.load("images/background.jpg")
-        
+                
     def run_game(self):
         """Start the main loop for the game."""
         while True:
@@ -28,7 +26,7 @@ class ZombieAssault:
                     sys.exit()
                     
             # Redraw the screen during each pass through the loop.
-            self.screen.blit(self.background, (0, 0))
+            self.screen.blit(self.settings.background, (0, 0))
                 
             # Make the most recently drawn screen visible.
             pygame.display.flip()
