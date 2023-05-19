@@ -13,6 +13,9 @@ class ZombieAssault:
         self.screen = pygame.display.set_mode((1920, 1080))
         pygame.display.set_caption("Zombie Assault v0.1.0")
         
+        # Load the background image.
+        self.background = pygame.image.load("images/background.jpg")
+        
     def run_game(self):
         """Start the main loop for the game."""
         while True:
@@ -20,6 +23,9 @@ class ZombieAssault:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+                    
+            # Redraw the screen during each pass through the loop.
+            self.screen.blit(self.background, (0, 0))
                 
             # Make the most recently drawn screen visible.
             pygame.display.flip()
