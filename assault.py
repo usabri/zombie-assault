@@ -1,6 +1,7 @@
 import sys
-
 import pygame
+
+from settings import Settings
 
 class ZombieAssault:
     """Overall class to manage game assets and behavior."""
@@ -9,8 +10,10 @@ class ZombieAssault:
         """Initialize the game, and create game resources."""
         pygame.init()
         self.clock = pygame.time.Clock()
+        self.settings = Settings()
         
-        self.screen = pygame.display.set_mode((1920, 1080))
+        self.screen = pygame.display.set_mode(
+            (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Zombie Assault v0.1.0")
         
         # Load the background image.
