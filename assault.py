@@ -23,6 +23,7 @@ class ZombieAssault:
         """Start the main loop for the game."""
         while True:
             self._check_events()
+            self.player.update()
             self._update_screen()
             self.clock.tick(60)
     
@@ -31,6 +32,21 @@ class ZombieAssault:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    # Move the player to the right.
+                    self.player.moving_right = True
+                elif event.key == pygame.K_LEFT:
+                    # Move the player to the left.
+                    self.player.moving_left = True
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    # Stop moving the player to the right.
+                    self.player.moving_right = False
+                elif event.key == pygame.K_LEFT:
+                    # Stop moving the player to the left.
+                    self.player.moving_left = False
+
                 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""

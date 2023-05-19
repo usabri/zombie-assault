@@ -20,16 +20,26 @@ class Player:
             "up_right": pygame.image.load("images/PlayerUpRight.png"),
         }
         
-        self.image = self.player_images["down"] # Set the initial image.
+        # Load the player image and get its rect.
+        self.image = self.player_images["down"]
         self.rect = self.image.get_rect()
         
         # Start the player in the center of the screen.
         self.rect.center = self.screen_rect.center
         
-    def update(self, direction):
-        """Update the player's image based on the direction."""
-        self.image = self.player_images[direction]
+        # Start with the player idle.
+        self.moving_right = False
+        self.moving_left = False
         
+    def update(self):
+        """Update the player's image based on the direction."""
+        if self.moving_right:
+            self.image = self.player_images["right"]        
+            self.rect.x += 1
+        if self.moving_left:
+            self.image = self.player_images["left"]
+            self.rect.x -= 1
+               
     def blitme(self):
         """Draw the player at its current location."""
         self.screen.blit(self.image, self.rect)
