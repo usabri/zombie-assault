@@ -30,15 +30,36 @@ class Player:
         # Start with the player idle.
         self.moving_right = False
         self.moving_left = False
+        self.moving_up = False
+        self.moving_down = False
         
     def update(self):
         """Update the player's image based on the direction."""
         if self.moving_right:
-            self.image = self.player_images["right"]        
+            if self.moving_up:
+                self.image = self.player_images["up_right"]
+            elif self.moving_down:
+                self.image = self.player_images["down_right"]
+            else:
+                self.image = self.player_images["right"]
             self.rect.x += 1
         if self.moving_left:
-            self.image = self.player_images["left"]
+            if self.moving_up:
+                self.image = self.player_images["up_left"]
+            elif self.moving_down:
+                self.image = self.player_images["down_left"]
+            else:
+                self.image = self.player_images["left"]
             self.rect.x -= 1
+        if self.moving_up:
+            if not self.moving_left and not self.moving_right:
+                self.image = self.player_images["up"]
+            self.rect.y -= 1
+        if self.moving_down:
+            if not self.moving_left and not self.moving_right:
+                self.image = self.player_images["down"]
+            self.rect.y += 1
+
                
     def blitme(self):
         """Draw the player at its current location."""

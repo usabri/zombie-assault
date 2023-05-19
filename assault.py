@@ -39,6 +39,12 @@ class ZombieAssault:
                 elif event.key == pygame.K_LEFT:
                     # Move the player to the left.
                     self.player.moving_left = True
+                elif event.key == pygame.K_UP:
+                    # Move the player up.
+                    self.player.moving_up = True
+                elif event.key == pygame.K_DOWN:
+                    # Move the player down.
+                    self.player.moving_down = True
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
                     # Stop moving the player to the right.
@@ -46,6 +52,12 @@ class ZombieAssault:
                 elif event.key == pygame.K_LEFT:
                     # Stop moving the player to the left.
                     self.player.moving_left = False
+                elif event.key == pygame.K_UP:
+                    # Stop moving the player up.
+                    self.player.moving_up = False
+                elif event.key == pygame.K_DOWN:
+                    # Stop moving the player down.
+                    self.player.moving_down = False
 
                 
     def _update_screen(self):
