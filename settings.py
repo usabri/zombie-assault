@@ -9,3 +9,6 @@ class Settings:
         self.screen_width = 1920
         self.screen_height = 1080
         self.background = pygame.image.load("images/background.jpg")
+        
+        # Player settings
+        self.player_speed = 2.0
