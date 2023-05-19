@@ -58,7 +58,6 @@ class ZombieAssault:
                 elif event.key == pygame.K_DOWN:
                     # Stop moving the player down.
                     self.player.moving_down = False
-
                 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
