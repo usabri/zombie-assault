@@ -32,6 +32,18 @@ class Player:
         self.WALK_UP_IMAGES = [
             pygame.image.load(f"images/WalkUp{i}.png") for i in range(1, 9)
         ]
+        self.WALK_DOWN_LEFT_IMAGES = [
+            pygame.image.load(f"images/WalkDownLeft{i}.png") for i in range (1, 9)
+        ]
+        self.WALK_DOWN_RIGHT_IMAGES = [
+            pygame.image.load(f"images/WalkDownRight{i}.png") for i in range (1, 9)
+        ]
+        self.WALK_UP_LEFT_IMAGES = [
+            pygame.image.load(f"images/WalkUpLeft{i}.png") for i in range (1, 9)
+        ]
+        self.WALK_UP_RIGHT_IMAGES = [
+            pygame.image.load(f"images/WalkUpRight{i}.png") for i in range (1, 9)
+        ]       
 
         # Animation delay
         self.FRAME_DELAY = 4
@@ -46,12 +58,20 @@ class Player:
         self.walk_left_frame_index = 0
         self.walk_right_frame_index = 0
         self.walk_up_frame_index = 0
+        self.walk_down_left_frame_index = 0
+        self.walk_down_right_frame_index = 0
+        self.walk_up_left_frame_index = 0
+        self.walk_up_right_frame_index = 0
 
         # Start with the player idle.
         self.moving_right = False
         self.moving_left = False
         self.moving_up = False
         self.moving_down = False
+        self.moving_down_left = False
+        self.moving_down_right = False
+        self.moving_up_left = False
+        self.moving_up_right = False
 
         # Animation delay
         self.last_frame_change_time = pygame.time.get_ticks()
@@ -78,6 +98,30 @@ class Player:
             self.rect.y += 2
             self.walk_down_frame_index = self.animate_walk(
                 self.WALK_DOWN_IMAGES, self.walk_down_frame_index)
+        if self.moving_down_left:
+            self.image = self.player_images["down_left"]
+            self.rect.x -= 2
+            self.rect.y += 2
+            self.walk_down_left_frame_index = self.animate_walk(
+                self.WALK_DOWN_LEFT_IMAGES, self.walk_down_left_frame_index)
+        if self.moving_down_right:
+            self.image = self.player_images["down_right"]
+            self.rect.x += 2
+            self.rect.y += 2
+            self.walk_down_right_frame_index = self.animate_walk(
+                self.WALK_DOWN_RIGHT_IMAGES, self.walk_down_right_frame_index)
+        if self.moving_up_left:
+            self.image = self.player_images["up_left"]
+            self.rect.x -= 2
+            self.rect.y -= 2
+            self.walk_up_left_frame_index = self.animate_walk(
+                self.WALK_UP_LEFT_IMAGES, self.walk_up_left_frame_index)
+        if self.moving_up_right:
+            self.image = self.player_images["up_right"]
+            self.rect.x += 2
+            self.rect.y -= 2
+            self.walk_up_right_frame_index = self.animate_walk(
+                self.WALK_UP_RIGHT_IMAGES, self.walk_up_right_frame_index)            
             
     def animate_walk(self, walk_images, frame_index):
         """Animate the player's walking motion based on the walk_images list."""
