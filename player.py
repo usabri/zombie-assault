@@ -15,6 +15,10 @@ class Player:
              "left": pygame.image.load("images/PlayerLeft.png"),
             "right": pygame.image.load("images/PlayerRight.png"),
             "up": pygame.image.load("images/PlayerUp.png"),
+            "down_left": pygame.image.load("images/PlayerDownLeft.png"),
+            "down_right": pygame.image.load("images/PlayerDownRight.png"),
+            "up_left": pygame.image.load("images/PlayerUpLeft.png"),
+            "up_right": pygame.image.load("images/PlayerUpRight.png"),
         }
 
         self.WALK_DOWN_IMAGES = [
@@ -83,6 +87,34 @@ class Player:
     def update(self):
         """Update the player's image based on the direction facing
         and update player x and y values."""
+        if self.moving_down_left:
+            self.image = self.player_images["down_left"]
+            self.x -= self.settings.player_speed
+            self.y += self.settings.player_speed
+            self.direction = "down_left"
+            self.walk_down_left_frame_index = self.animate_walk(
+                self.WALK_DOWN_LEFT_IMAGES, self.walk_down_left_frame_index)
+        if self.moving_down_right:
+            self.image = self.player_images["down_right"]
+            self.x += self.settings.player_speed
+            self.y += self.settings.player_speed
+            self.direction = "down_right"
+            self.walk_down_right_frame_index = self.animate_walk(
+                self.WALK_DOWN_RIGHT_IMAGES, self.walk_down_right_frame_index)
+        if self.moving_up_left:
+            self.image = self.player_images["up_left"]
+            self.x -= self.settings.player_speed
+            self.y -= self.settings.player_speed
+            self.direction = "up_left"
+            self.walk_up_left_frame_index = self.animate_walk(
+                self.WALK_UP_LEFT_IMAGES, self.walk_up_left_frame_index)
+        if self.moving_up_right:
+            self.image = self.player_images["up_right"]
+            self.x += self.settings.player_speed
+            self.y -= self.settings.player_speed
+            self.direction = "up_right"
+            self.walk_up_right_frame_index = self.animate_walk(
+                self.WALK_UP_RIGHT_IMAGES, self.walk_up_right_frame_index)        
         if self.moving_right:
             self.image = self.player_images["right"]
             if self.moving_right and self.rect.right <= self.screen_rect.right:
@@ -111,34 +143,6 @@ class Player:
                 self.direction = "down"
             self.walk_down_frame_index = self.animate_walk(
                 self.WALK_DOWN_IMAGES, self.walk_down_frame_index)
-        if self.moving_down_left:
-            self.image = self.player_images["down_left"]
-            self.x -= self.settings.player_speed
-            self.y += self.settings.player_speed
-            self.direction = "down_left"
-            self.walk_down_left_frame_index = self.animate_walk(
-                self.WALK_DOWN_LEFT_IMAGES, self.walk_down_left_frame_index)
-        if self.moving_down_right:
-            self.image = self.player_images["down_right"]
-            self.x += self.settings.player_speed
-            self.y += self.settings.player_speed
-            self.direction = "down_right"
-            self.walk_down_right_frame_index = self.animate_walk(
-                self.WALK_DOWN_RIGHT_IMAGES, self.walk_down_right_frame_index)
-        if self.moving_up_left:
-            self.image = self.player_images["up_left"]
-            self.x -= self.settings.player_speed
-            self.y -= self.settings.player_speed
-            self.direction = "up_left"
-            self.walk_up_left_frame_index = self.animate_walk(
-                self.WALK_UP_LEFT_IMAGES, self.walk_up_left_frame_index)
-        if self.moving_up_right:
-            self.image = self.player_images["up_right"]
-            self.x += self.settings.player_speed
-            self.y -= self.settings.player_speed
-            self.direction = "up_right"
-            self.walk_up_right_frame_index = self.animate_walk(
-                self.WALK_UP_RIGHT_IMAGES, self.walk_up_right_frame_index) 
             
         # Update rect object from self.x and self.y
         self.rect.x = self.x

@@ -70,7 +70,19 @@ class ZombieAssault:
             
     def _check_keyup_events(self, event):
         """Respond to key releases."""
-        if event.key == pygame.K_RIGHT:
+        if event.key == pygame.K_UP and event.key == pygame.K_RIGHT:
+            self.player.moving_up_right = False
+            self.player.image = self.player.player_images["up_right"]
+        elif event.key == pygame.K_UP and event.key == pygame.K_LEFT:
+            self.player.moving_up_left = False
+            self.player.image = self.player.player_images["up_left"]
+        elif event.key == pygame.K_DOWN and event.key == pygame.K_RIGHT:
+            self.player.moving_down_right = False
+            self.player.image = self.player.player_images["down_right"]
+        elif event.key == pygame.K_DOWN and event.key == pygame.K_LEFT:
+            self.player.moving_down_left = False
+            self.player.image = self.player.player_images["down_left"]
+        elif event.key == pygame.K_RIGHT:
             self.player.moving_right = False
             self.player.image = self.player.player_images["right"]
         elif event.key == pygame.K_LEFT:
