@@ -47,6 +47,8 @@ class ZombieAssault:
             self.player.moving_up = True
         elif event.key == pygame.K_DOWN:
             self.player.moving_down = True
+        elif event.key == pygame.q:
+            sys.exit()
             
     def _check_keyup_events(self, event):
         """Respond to key releases."""
