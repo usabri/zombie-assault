@@ -53,6 +53,9 @@ class Player:
         # Store a float for the player's exact position
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
+        
+        # Store the current direction the player is facing.
+        self.direction = "down"
 
         # Animation variables
         self.walk_down_frame_index = 0
@@ -84,48 +87,56 @@ class Player:
             self.image = self.player_images["right"]
             if self.moving_right and self.rect.right <= self.screen_rect.right:
                 self.x += self.settings.player_speed
+                self.direction = "right"
             self.walk_right_frame_index = self.animate_walk(
                 self.WALK_RIGHT_IMAGES, self.walk_right_frame_index)
         if self.moving_left:
             self.image = self.player_images["left"]
             if self.moving_left and self.rect.left >= self.screen_rect.left:
                 self.x -= self.settings.player_speed
+                self.direction = "left"
             self.walk_left_frame_index = self.animate_walk(
                 self.WALK_LEFT_IMAGES, self.walk_left_frame_index)
         if self.moving_up:
             self.image = self.player_images["up"]
             if self.moving_up and self.rect.top >= self.screen_rect.top:
                 self.y -= self.settings.player_speed
+                self.direction = "up"
             self.walk_up_frame_index = self.animate_walk(
                 self.WALK_UP_IMAGES, self.walk_up_frame_index)
         if self.moving_down:
             self.image = self.player_images["down"]
             if self.moving_down and self.rect.bottom <= self.screen_rect.bottom:
                 self.y += self.settings.player_speed
+                self.direction = "down"
             self.walk_down_frame_index = self.animate_walk(
                 self.WALK_DOWN_IMAGES, self.walk_down_frame_index)
         if self.moving_down_left:
             self.image = self.player_images["down_left"]
             self.x -= self.settings.player_speed
             self.y += self.settings.player_speed
+            self.direction = "down_left"
             self.walk_down_left_frame_index = self.animate_walk(
                 self.WALK_DOWN_LEFT_IMAGES, self.walk_down_left_frame_index)
         if self.moving_down_right:
             self.image = self.player_images["down_right"]
             self.x += self.settings.player_speed
             self.y += self.settings.player_speed
+            self.direction = "down_right"
             self.walk_down_right_frame_index = self.animate_walk(
                 self.WALK_DOWN_RIGHT_IMAGES, self.walk_down_right_frame_index)
         if self.moving_up_left:
             self.image = self.player_images["up_left"]
             self.x -= self.settings.player_speed
             self.y -= self.settings.player_speed
+            self.direction = "up_left"
             self.walk_up_left_frame_index = self.animate_walk(
                 self.WALK_UP_LEFT_IMAGES, self.walk_up_left_frame_index)
         if self.moving_up_right:
             self.image = self.player_images["up_right"]
             self.x += self.settings.player_speed
             self.y -= self.settings.player_speed
+            self.direction = "up_right"
             self.walk_up_right_frame_index = self.animate_walk(
                 self.WALK_UP_RIGHT_IMAGES, self.walk_up_right_frame_index) 
             

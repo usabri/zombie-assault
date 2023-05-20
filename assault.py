@@ -42,7 +42,15 @@ class ZombieAssault:
                 
     def _check_keydown_events(self, event):
         """ Respond to keypresses."""
-        if event.key == pygame.K_RIGHT:
+        if event.key == pygame.K_UP and event.key == pygame.K_RIGHT:
+            self.player.moving_up_right = True
+        elif event.key == pygame.K_UP and event.key == pygame.K_LEFT:
+            self.player.moving_up_left = True
+        elif event.key == pygame.K_DOWN and event.key == pygame.K_RIGHT:
+            self.player.moving_down_right = True
+        elif event.key == pygame.K_DOWN and event.key == pygame.K_LEFT:
+            self.player.moving_down_left = True
+        elif event.key == pygame.K_RIGHT:
             self.player.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.player.moving_left = True
