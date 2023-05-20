@@ -12,13 +12,9 @@ class Player:
         # Load the player images and get their rects.
         self.player_images = {
             "down": pygame.image.load("images/PlayerDown.png"),
-            "down_left": pygame.image.load("images/PlayerDownLeft.png"),
-            "down_right": pygame.image.load("images/PlayerDownRight.png"),
-            "left": pygame.image.load("images/PlayerLeft.png"),
+             "left": pygame.image.load("images/PlayerLeft.png"),
             "right": pygame.image.load("images/PlayerRight.png"),
             "up": pygame.image.load("images/PlayerUp.png"),
-            "up_left": pygame.image.load("images/PlayerUpLeft.png"),
-            "up_right": pygame.image.load("images/PlayerUpRight.png"),
         }
 
         self.WALK_DOWN_IMAGES = [
@@ -86,22 +82,26 @@ class Player:
         and update player x and y values."""
         if self.moving_right:
             self.image = self.player_images["right"]
-            self.x += self.settings.player_speed
+            if self.moving_right and self.rect.right <= self.screen_rect.right:
+                self.x += self.settings.player_speed
             self.walk_right_frame_index = self.animate_walk(
                 self.WALK_RIGHT_IMAGES, self.walk_right_frame_index)
         if self.moving_left:
             self.image = self.player_images["left"]
-            self.x -= self.settings.player_speed
+            if self.moving_left and self.rect.left >= self.screen_rect.left:
+                self.x -= self.settings.player_speed
             self.walk_left_frame_index = self.animate_walk(
                 self.WALK_LEFT_IMAGES, self.walk_left_frame_index)
         if self.moving_up:
             self.image = self.player_images["up"]
-            self.y -= self.settings.player_speed
+            if self.moving_up and self.rect.top >= self.screen_rect.top:
+                self.y -= self.settings.player_speed
             self.walk_up_frame_index = self.animate_walk(
                 self.WALK_UP_IMAGES, self.walk_up_frame_index)
         if self.moving_down:
             self.image = self.player_images["down"]
-            self.y += self.settings.player_speed
+            if self.moving_down and self.rect.bottom <= self.screen_rect.bottom:
+                self.y += self.settings.player_speed
             self.walk_down_frame_index = self.animate_walk(
                 self.WALK_DOWN_IMAGES, self.walk_down_frame_index)
         if self.moving_down_left:
@@ -127,11 +127,11 @@ class Player:
             self.x += self.settings.player_speed
             self.y -= self.settings.player_speed
             self.walk_up_right_frame_index = self.animate_walk(
-                self.WALK_UP_RIGHT_IMAGES, self.walk_up_right_frame_index)
+                self.WALK_UP_RIGHT_IMAGES, self.walk_up_right_frame_index) 
             
         # Update rect object from self.x and self.y
         self.rect.x = self.x
-        self.rect.y = self.y          
+        self.rect.y = self.y
             
     def animate_walk(self, walk_images, frame_index):
         """Animate the player's walking motion based on the walk_images list."""
