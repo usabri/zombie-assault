@@ -3,6 +3,7 @@ import pygame
 
 from settings import Settings
 from player import Player
+from bullet import Bullet
 
 class ZombieAssault:
     """Overall class to manage game assets and behavior."""
@@ -18,12 +19,14 @@ class ZombieAssault:
         pygame.display.set_caption("Zombie Assault v0.1.0")
 
         self.player = Player(self)
+        self.bullets = pygame.sprite.Group()
                 
     def run_game(self):
         """Start the main loop for the game."""
         while True:
             self._check_events()
             self.player.update()
+            self.bullets.update()
             self._update_screen()
             self.clock.tick(60)
     
