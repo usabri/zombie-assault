@@ -50,8 +50,15 @@ class ZombieAssault:
             self.player.moving_up = True
         elif event.key == pygame.K_DOWN:
             self.player.moving_down = True
-        elif event.key == pygame.q:
+        elif event.key == pygame.K_q:
             sys.exit()
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
+            
+    def _fire_bullet(self):
+        """Create a new bullet and add it to the bullets group."""
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
             
     def _check_keyup_events(self, event):
         """Respond to key releases."""
@@ -71,6 +78,8 @@ class ZombieAssault:
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
         self.screen.blit(self.settings.background, (0, 0))
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
         self.player.blitme()
         
         pygame.display.flip()     
